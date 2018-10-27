@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title></title>
+  <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      padding :0;
+    }
+    .map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id='map-popups-js' class='map'> </div>
+<script>
+L.mapbox.accessToken = 'pk.eyJ1Ijoic3RhY2Vycm9sbCIsImEiOiJjam5yb2RnaXQwMnZxM2tud3VrbGw1NTh2In0.qFb7Gekr9HLCBQ3F8nqfkQ';
+var mapPopupsJS = L.mapbox.map('map-popups-js', 'mapbox.light')
+  .setView([33, -81], 6.5);
+var myLayer = L.mapbox.featureLayer().addTo(mapPopupsJS);
+
+var geojson = [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-80, 33]
+    },
+    properties: {
+      title: 'Mapbox DC',
+      description: '1714 14th St NW, Washington DC',
+      image: 'http://www.pegasusbus.com/wp-content/uploads/food-icon.png',
+      icon: {
+        iconUrl: 'http://www.pegasusbus.com/wp-content/uploads/food-icon.png',
+        iconSize: [50, 50], // size of the icon
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+        className: 'dot'
+      }
+    }
+  }
+      
+];
+
+// Set a custom icon on each marker based on feature properties.
+myLayer.on('layeradd', function(e) {
+  var marker = e.layer,
+    feature = marker.feature;
+  marker.setIcon(L.icon(feature.properties.icon));
+  var content = '<p><strong>' + feature.properties.title + '</strong></p><img src="' + feature.properties.image + '" alt="">';
+  marker.bindPopup(content);
+});
+myLayer.setGeoJSON(geojson);
+mapPopupsJS.scrollWheelZoom.disable();
+</script>
+</body>
+</html>
