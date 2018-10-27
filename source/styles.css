@@ -1,3 +1,13 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     margin: 0px 0px 0px 0px;
@@ -20,18 +30,18 @@ h4 {
 
 #mission-statement {
     text-align: center;
-    padding: 20px 0px 20px;
+    margin: 50px 0px 20px;
+    line-height: 40px;
 }
 
 #header {
     text-align: center;
-    background: url("images/johnny-milano.jpg") no-repeat center;
-    background: black;
+    background: url("https://static01.nyt.com/images/2018/10/12/us/12michael-best2/merlin_145215105_12e7d3fc-cb52-4ec7-a1ce-6bacbadda73c-superJumbo.jpg?quality=90&auto=webp") no-repeat center;
+    /*background: black;*/
     background-size: cover;
     height: 500px;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    line-height: 10px;
 }
 
 #header h1 {
@@ -41,29 +51,58 @@ h4 {
     text-align: center;
     color: white;
     font-weight: bold;
-    padding-top: 250px;
+    padding-top: 200px;
 }
 
 #supply-buttons {
     display: block;
     max-width: 100%;
     display: block;
-    float: center;
     margin: auto;
-    background: ghostwhite;
+    background: white;
+    margin-bottom: 30px;
 }
 
 .box {
     display: inline-block;
+    background: lightskyblue;
+    background-image: url("https://static01.nyt.com/images/2018/10/12/us/12michael-best3/merlin_145215417_99c6cf6b-6cf9-41da-be90-c7affcb43f10-superJumbo.jpg");
     height: 250px;
     width: 250px;
+    border-radius: 50%;
+    border-width: 0px;
     padding: 10px;
     margin: 20px;
-    background: lightskyblue;
 }
 
 .box h2 {
     text-align: center;
     font-weight: bold;
     color: white;
+}
+
+button {
+    background-color: black;
+}
+
+button:hover{
+    background-color: black;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#donate-now-button {
+    font-size: 20px;
+    color: white;
+    margin: 30px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 10px 30px 10px;
+    background-color: red;
+}
+
+#donate-now-button:hover {
+    opacity: 1.0;
+    background-color: darkred;
+    cursor: pointer;
 }
