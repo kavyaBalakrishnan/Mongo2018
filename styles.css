@@ -1,0 +1,10 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  margin-right: auto;
+  text-align: center;
+}
+
+.flower {
+  background-image: url(hand2.jpg.jpg);
+  background-size: cover;
+}
