@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link href='./styles.css' rel='stylesheet'>
     <script src='site.js'></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <title>Mongo: Disaster Relief</title>
 </head>
+
 <body>
+
+    <script type="text/javascript">
+        $(function(){
+            var stickyRibbonTop = $('#navigation').offset().top;
+            $(window).scroll(function(){
+                if( $(window).scrollTop() > stickyRibbonTop ) {
+                    $('#navigation').css({position: 'fixed', top: '0px', background: 'rgba(0,0,0,0.06)'});
+                } else {
+                    $('#navigation').css({position: 'static', top: '0px', background: 'white'});
+                }
+            });
+        });
+    </script>
+
+    <div id = "nav-bar">
+        <a href="#" class = "logo">Mongo</a>
+        <div id="nav-right">
+            <a href="#">Login</a>
+        </div>
+    </div>
+
     <div id = "header">
         <h1>
-            Mongo
+            Hurricane Michael
         </h1>
         <button id = "donate-now-button">
             Donate Now
         </button>
     </div>
+
     <div id = "mission-statement">
-        <h2>Our Mission Statement</h2>
+        <h2>Our Mission</h2>
         <p>We aim to...</p>
     </div>
+
     <div id = "supply-buttons" style="overflow: hidden; display: flex; justify-content:space-around;">
         <button id = "food-box" class = "box">
             <h2>FOOD</h2>

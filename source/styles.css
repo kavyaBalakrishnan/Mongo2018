@@ -14,18 +14,69 @@ body {
     padding: 0px 0px 0px 0px;
 }
 
+#nav-bar {
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.65);
+    padding: 10px 10px; /* Large padding which will shrink on scroll (using JS) */
+    transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+    position: fixed; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 0; /* At the top */
+    z-index: 99;
+}
+
+#nav-bar a:hover {
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+#nav-bar a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: left;
+    padding: 0px 10px 0px;
+}
+
+#nav-right {
+    font-size: 20px;
+    float: right;
+    line-height: 50px;
+    margin-right: 20px;
+}
+
 h1 {
-    font-family: 'Raleway', sans-serif;
     margin-right: auto;
     text-align: center;
     color: white;
 }
-p {
-    color: black;
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    text-align: left;
+    font-size: 60px;
+    color: white;
+    padding: 0px 10px 0px;
+    font-weight: bold;
 }
 
 h4 {
+    text-align: right;
+    color: white;
+}
+
+p {
     color: black;
+    font-size: 20px;
 }
 
 #mission-statement {
@@ -36,10 +87,13 @@ h4 {
 
 #header {
     text-align: center;
-    background: url("https://static01.nyt.com/images/2018/10/12/us/12michael-best2/merlin_145215105_12e7d3fc-cb52-4ec7-a1ce-6bacbadda73c-superJumbo.jpg?quality=90&auto=webp") no-repeat center;
+    background-image:linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url("https://static01.nyt.com/images/2018/10/12/us/12michael-best2/merlin_145215105_12e7d3fc-cb52-4ec7-a1ce-6bacbadda73c-superJumbo.jpg?quality=90&auto=webp");
     /*background: black;*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    height: 500px;
+    height: 550px;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
 }
@@ -51,7 +105,7 @@ h4 {
     text-align: center;
     color: white;
     font-weight: bold;
-    padding-top: 200px;
+    padding-top: 250px;
 }
 
 #supply-buttons {
@@ -60,34 +114,54 @@ h4 {
     display: block;
     margin: auto;
     background: white;
-    margin-bottom: 30px;
+    margin-bottom: 500px;
 }
 
 .box {
+    opacity: 0.80;
     display: inline-block;
-    background: lightskyblue;
-    background-image: url("https://static01.nyt.com/images/2018/10/12/us/12michael-best3/merlin_145215417_99c6cf6b-6cf9-41da-be90-c7affcb43f10-superJumbo.jpg");
     height: 250px;
     width: 250px;
-    border-radius: 50%;
     border-width: 0px;
     padding: 10px;
     margin: 20px;
 }
 
+#food-box {
+    background: url("https://image.flaticon.com/icons/svg/45/45332.svg");
+    border-radius: 50%;
+    background-size: 250px 250px;
+}
+
+#water-box {
+    background: url("https://image.flaticon.com/icons/svg/67/67780.svg");
+    border-radius: 50%;
+    background-size: 250px 250px;
+}
+
+#medical-box {
+    background: url("https://image.flaticon.com/icons/svg/688/688604.svg");
+    background-size: 250px 250px;
+}
+
+#clothing-box {
+    background: url("https://image.flaticon.com/icons/svg/107/107499.svg");
+    background-size: 250px 250px;
+}
+
 .box h2 {
+    visibility: hidden;
     text-align: center;
     font-weight: bold;
-    color: white;
+    color: black;
 }
 
 button {
-    background-color: black;
+
 }
 
 button:hover{
-    background-color: black;
-    opacity: 0.5;
+    opacity: 0.50;
     cursor: pointer;
 }
 
