@@ -1,5 +1,7 @@
 body {
     font-family: 'Raleway', sans-serif;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 h1 {
@@ -18,11 +20,13 @@ h4 {
 
 #mission-statement {
     text-align: center;
+    padding: 20px 0px 20px;
 }
 
 #header {
     text-align: center;
     background: url("images/johnny-milano.jpg") no-repeat center;
+    background: black;
     background-size: cover;
     height: 500px;
     margin: 0px 0px 0px 0px;
@@ -38,4 +42,28 @@ h4 {
     color: white;
     font-weight: bold;
     padding-top: 250px;
+}
+
+#supply-buttons {
+    display: block;
+    max-width: 100%;
+    display: block;
+    float: center;
+    margin: auto;
+    background: ghostwhite;
+}
+
+.box {
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    padding: 10px;
+    margin: 20px;
+    background: lightskyblue;
+}
+
+.box h2 {
+    text-align: center;
+    font-weight: bold;
+    color: white;
 }
