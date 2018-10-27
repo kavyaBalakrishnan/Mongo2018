@@ -1,19 +1,76 @@
+<!DOCTYPE html>
 <html>
- <head>
-  <script src=’https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-  <link href=’https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel=’stylesheet’ />
- </head>
- <body>
-  <div id='map' style='width: 400px; height: 300px;'></div>
-  <script>
-  mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhdGhpcGlsbGFsYW1hcnJpIiwiYSI6ImNqbnJwNjQxeDBhcDUza250NWY1cG1ldG8ifQ.ADwZbJ-6R15eyXx82pbEow';
-  
-  var map = new mapboxgl.Map({
+<head>
+    <meta charset='utf-8' />
+    <title>Attach a popup to a marker instance</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+
+#redmarker {
+    background-image: url('reddot.jpg');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#yellowmarker {
+    background-image: url('yellowdot.jpg');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 200px;
+}
+
+</style>
+
+<div id='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhdGhpcGlsbGFsYW1hcnJpIiwiYSI6ImNqbnJwMzc4YjBha2YzcG4ycXY0MWd5Mm4ifQ.XMMN4svUzWmVtjiw6lljeQ';
+
+var monument = [-80, 28];
+var mon2 = [-81, 31];
+var centerpt = [-77, 38];
+var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center:[31, -81],
-    zoom: 6
-  });
- </script>
- </body>
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: centerpt,
+    zoom: 15
+});
+
+// create the popup
+var popup = new mapboxgl.Popup({ offset: 25 }).setText('Urgent need.');
+var popup2 = new mapboxgl.Popup({ offset: 25 }).setText('Need.');
+
+
+// create DOM element for the marker
+var el = document.createElement('div');
+el.id = 'redmarker';
+
+var el2 = document.createElement('div');
+el.id = 'yellowmarker';
+
+// create the marker
+new mapboxgl.Marker(el).setLngLat(monument).setPopup(popup).addTo(map);
+new mapboxgl.Marker(el2).setLngLat(mon2).setPopup(popup2).addTo(map);
+
+
+</script>
+
+</body>
 </html>
