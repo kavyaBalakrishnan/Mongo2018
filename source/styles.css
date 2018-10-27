@@ -51,6 +51,22 @@ body {
     margin-right: 20px;
 }
 
+#footer {
+    background-color: rgba(0,0,0,0.65);
+    padding: 10px 10px;
+    position: relative;
+    width: 100%;
+    height: 35px;
+    z-index: 99;
+}
+
+#footer p {
+    color: white;
+    text-align: center;
+    position: center;
+    padding-top: 5px;
+}
+
 h1 {
     margin-right: auto;
     text-align: center;
@@ -77,6 +93,14 @@ h4 {
 p {
     color: black;
     font-size: 20px;
+    text-align: center;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
 }
 
 #mission-statement {
@@ -108,17 +132,32 @@ p {
     padding-top: 250px;
 }
 
+#stats {
+    display: block;
+    margin: auto;
+    background: white;
+    max-width: 100px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#stats h5,h6 {
+    disply: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
 #supply-buttons {
     display: block;
     max-width: 100%;
     display: block;
     margin: auto;
     background: white;
-    margin-bottom: 500px;
+    margin-bottom: 300px;
 }
 
-.box {
-    opacity: 0.80;
+.sup-box {
+    opacity: 0.85;
     display: inline-block;
     height: 250px;
     width: 250px;
@@ -149,11 +188,11 @@ p {
     background-size: 250px 250px;
 }
 
-.box h2 {
-    visibility: hidden;
+.supply h2 {
     text-align: center;
     font-weight: bold;
     color: black;
+    text-align: center;
 }
 
 button {
@@ -161,7 +200,7 @@ button {
 }
 
 button:hover{
-    opacity: 0.50;
+    opacity: 0.5;
     cursor: pointer;
 }
 
