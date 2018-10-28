@@ -1,0 +1,241 @@
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+#nav-bar {
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.65);
+    padding: 10px 10px; /* Large padding which will shrink on scroll (using JS) */
+    transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+    position: fixed; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 0; /* At the top */
+    z-index: 99;
+}
+
+#nav-bar a:hover {
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+#nav-bar a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: left;
+    padding: 0px 10px 0px;
+}
+
+#nav-right {
+    font-size: 20px;
+    float: right;
+    line-height: 50px;
+    margin-right: 20px;
+}
+
+h1 {
+    margin-right: auto;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    text-align: left;
+    font-size: 60px;
+    color: white;
+    padding: 0px 10px 0px;
+    font-weight: bold;
+}
+
+h4 {
+    text-align: right;
+    color: white;
+}
+
+p {
+    color: black;
+    font-size: 20px;
+}
+
+#mission-statement {
+    text-align: center;
+    margin: 50px 0px 20px;
+    line-height: 40px;
+}
+
+#header {
+    text-align: center;
+    background-image:linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url("https://static01.nyt.com/images/2018/10/12/us/12michael-best2/merlin_145215105_12e7d3fc-cb52-4ec7-a1ce-6bacbadda73c-superJumbo.jpg?quality=90&auto=webp");
+    /*background: black;*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+#header h1 {
+    font-size: 100px;
+    font-family: 'Raleway', sans-serif;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding-top: 250px;
+}
+
+#supply-buttons {
+    display: block;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    background: white;
+    margin-bottom: 500px;
+}
+
+.box {
+    opacity: 0.80;
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    border-width: 0px;
+    padding: 10px;
+    margin: 20px;
+}
+
+#food-box {
+    background: url("https://image.flaticon.com/icons/svg/45/45332.svg");
+    border-radius: 50%;
+    background-size: 250px 250px;
+}
+
+#water-box {
+    background: url("https://image.flaticon.com/icons/svg/67/67780.svg");
+    border-radius: 50%;
+    background-size: 250px 250px;
+}
+
+#medical-box {
+    background: url("https://image.flaticon.com/icons/svg/688/688604.svg");
+    background-size: 250px 250px;
+}
+
+#clothing-box {
+    background: url("https://image.flaticon.com/icons/svg/107/107499.svg");
+    background-size: 250px 250px;
+}
+
+.box h2 {
+    visibility: hidden;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+button {
+
+}
+
+button:hover{
+    opacity: 0.50;
+    cursor: pointer;
+}
+
+#donate-now-button {
+    font-size: 20px;
+    color: white;
+    margin: 30px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 10px 30px 10px;
+    background-color: red;
+}
+
+#donate-now-button:hover {
+    opacity: 1.0;
+    background-color: darkred;
+    cursor: pointer;
+}
+body{
+  background-image: url(background.jpg);
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+}
+
+button{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline:0;
+  background: #ccccff;
+  border: 6;
+  padding: 2px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.register-form-wrapper{
+  margin-top: 150px;
+  margin-left: 800px;
+}
+.image {
+  position: fixed;
+  height: 600px;
+  width: 500px;
+  background: url(background.jpg);
+  top:0px;
+  left:70px;
+}
+.image:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.8s;
+  opacity: 0;
+  background: url(hand3.jpg);
+  background-size: 100% 100%;
+}
+
+.signup{
+  float :left;
+  display:inline-block;
+}
+.login{
+  float:left;
+  display: inline-block;
+}
