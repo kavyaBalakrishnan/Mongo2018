@@ -1,22 +1,215 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8 />
-<title>A simple map</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
+    <meta charset='utf-8' />
+    <title>Hurricane Michael</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        h2,
+        h3 {
+          margin: 10px;
+          font-size: 5.2em;
+        }
+        h3 {
+          font-size: 3em;
+        }
+        p {
+          font-size: 2.85em;
+          margin: 10px;
+          text-align: left;
+        }
+        /**
+        * Create a position for the map
+        * on the page */
+        #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+        }
+        /**
+        * Set rules for how the map overlays
+        * (info box and legend) will be displayed
+        * on the page. */
+        .map-overlay {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.8);
+          margin-right: 20px;
+          font-family: Arial, sans-serif;
+          overflow: auto;
+          border-radius: 3px;
+        }
+        #features {
+          top: 0;
+          height: 100px;
+          margin-top: 20px;
+          width: 250px;
+        }
+        #legend {
+          padding: 10px;
+          bottom: 30px;
+          border-radius: 3px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          line-height: 18px;
+          height: 150px;
+          margin-bottom: 40px;
+          width: 300px;
+          right: 10px;
+          z-index: 1;
+          position: absolute;
+        }
+        .legend-key {
+          display: inline-block;
+          border-radius: 20%;
+          width: 30px;
+          height: 30px;
+          margin-right: 20px;
+        } 
+    </style>
 </head>
 <body>
+
+<style>
+.marker {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+</style>
+
 <div id='map'></div>
+<div class='map-overlay' id='legend'></div>
 <script>
-L.mapbox.accessToken = 'pk.eyJ1Ijoic3RhY2Vycm9sbCIsImEiOiJjam5yb2RnaXQwMnZxM2tud3VrbGw1NTh2In0.qFb7Gekr9HLCBQ3F8nqfkQ';
-var map = L.mapbox.map('map', 'mapbox.streets')
-    .setView([31, -81], 6);
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhdGhpcGlsbGFsYW1hcnJpIiwiYSI6ImNqbnJwMzc4YjBha2YzcG4ycXY0MWd5Mm4ifQ.XMMN4svUzWmVtjiw6lljeQ';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-81, 31],
+    zoom: 5
+});
+    var geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "flag": "yellow",
+                "date": "10/20/18",
+                "suppUsed": "12 palettes of water, 9 palettes of food",
+                "suppNeed": "10 palettes of water", 
+                "nextSteps": "Follow up with community leaders on flood damage",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -86.324462890625,
+                        32.024695711685304
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "flag": "red",
+                "date": "10/20/18",
+                "suppUsed": "12 palettes of water, 6 palettes of food",
+                "suppNeed": "60 palettes of water", 
+                "nextSteps": "Connect with local shelters",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -79,
+                        35.5976
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "flag": "red",
+                "date": "10/20/18",
+                "suppUsed": "10 palettes of water, 5 palettes of food",
+                "suppNeed": "50 palettes of water", 
+                "nextSteps": "Connect with local shelters",
+                "location": "Florida",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -82.29223632812499,
+                        32.28151823530889
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "flag": "green",
+                "geometry": {
+                    "type": "Point",
+                    "location": "Florida",
+                    "coordinates": [
+                        -81.51223632812499,
+                        27.66151823530889
+                    ]
+                }
+            }
+        ]
+    };
+    // add markers to map
+    geojson.features.forEach(function(marker) {
+        // create a DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        if(marker.flag === "yellow"){
+            el.style.backgroundImage = 'url(yellowdot.png)';
+            el.addEventListener('click', function() {
+                var alertMess = "Date of trip: " + marker.date + "\nSupplies Used:" + marker.suppUsed + "\nSupplies Needed: " + marker.suppNeed + "\nLocation: " + marker.geometry.coordinates[1] +  ", " +  marker.geometry.coordinates[0] +"\nNext steps: " + marker.nextSteps + "\n";
+                window.alert(alertMess);
+            });
+        }else if(marker.flag === "red"){
+            el.style.backgroundImage = 'url(reddot.JPG)';
+            el.addEventListener('click', function() {
+                var alertMess = "Date of trip: " + marker.date + "\nSupplies Used:" + marker.suppUsed + "\nSupplies Needed: " + marker.suppNeed + "\nLocation: " + marker.geometry.coordinates[1] +  ", " +  marker.geometry.coordinates[0] +"\nNext steps: " + marker.nextSteps + "\n";
+                window.alert(alertMess);
+            });
+        }
+        //else{
+        //    el.style.backgroundImage = 'url(green.jpg)';
+        //    el.addEvenListener('click', function() {
+        //        window.alert("Satisfactory.");
+        //    });
+        //}   
+        el.style.width = '50px';
+        el.style.height = '50px';
+        
+        // add marker to map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+    });
+var layers = ['Urgent Need', 'Moderate Need', 'Satisfactory Need'];
+var colors = ['#FF0000', '#FFFF00', '#33CC33'];
+for(var i = 0; i < layers.length; i++){
+    var layer = layers[i];
+    var color = colors[i];
+    var item = document.createElement('div');
+    var key = document.createElement('span');
+    key.className = 'legend-key';
+    key.style.backgroundColor = color;
+    var value = document.createElement('span');
+    value.style.fontSize = 'xx-large';
+    value.innerHTML = layer;
+    item.appendChild(key);
+    item.appendChild(value);
+    legend.appendChild(item);
+}
 </script>
+
 </body>
 </html>
+
