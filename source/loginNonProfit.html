@@ -4,7 +4,14 @@
     <meta charset='utf-8' />
     <title>Hurricane Michael</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css" />
+     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body {
@@ -14,13 +21,13 @@
         h2,
         h3 {
           margin: 10px;
-          font-size: 5.2em;
+          font-size: 1.2em;
         }
         h3 {
-          font-size: 3em;
+          font-size: 1em;
         }
         p {
-          font-size: 2.85em;
+          font-size: 0.85em;
           margin: 10px;
           text-align: left;
         }
@@ -73,22 +80,59 @@
           height: 30px;
           margin-right: 20px;
         } 
+
+        #trip-button{
+          font-size: 20px; 
+          color: black;
+          margin: 30px;
+          border-radius: 5px;
+          padding: 10px 30px 10px;
+          background-color: green;
+        }
+        #trip-button: hover{
+            opacity: 1.0;
+            background-color: darkgreen;
+            cursor: pointer;
+        }
+        .marker {
+            display: block;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+        }
+
+
     </style>
 </head>
 <body>
 
-<style>
-.marker {
-    display: block;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
-}
-</style>
-
 <div id='map'></div>
 <div class='map-overlay' id='legend'></div>
+<div class='map-overlay' id='features'>
+    <h2>Modify Trips</h2>
+    <div id='log'>
+        <button onclick="newTrip()">Log Trip</button>
+        <button>Update Trip</button>
+    </div>
+
+</div>
+<div style="display:none;">
+    <div id="addTrip">
+        <p> Date of Trip </p>
+        <input class='ajs-input' id='date' type='text'>
+        <p> Supplies Used </p>
+        <input class='ajs-input' id='suppUsed' type='text'>
+        <p> Supplies Needed </p>
+        <input class='ajs-input' id='suppNeed' type='text' val="30 palettes">
+        <p> Location Latitude </p>
+        <input class='ajs-input' id='lat' type='number' val=26>
+        <p> Location Longitude </p>
+        <input class='ajs-input' id='long' type='number' val=-80.6>
+        <p> Next steps </p>
+        <input class='ajs-input' id='next' type='text'>
+    </div>
+</div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhdGhpcGlsbGFsYW1hcnJpIiwiYSI6ImNqbnJwMzc4YjBha2YzcG4ycXY0MWd5Mm4ifQ.XMMN4svUzWmVtjiw6lljeQ';
 var map = new mapboxgl.Map({
@@ -160,24 +204,34 @@ var map = new mapboxgl.Map({
             }
         ]
     };
-    // add markers to map
-    geojson.features.forEach(function(marker) {
+        
+    addMarkers(geojson);
+    addLegend();
+    
+    function addMarkers(geojson){
+
+        //add markers to map
+        geojson.features.forEach(function(marker) {
+            // add marker to map
+            addMarker(marker); 
+        });
+
+    }
+    function addMarker(marker){
         // create a DOM element for the marker
         var el = document.createElement('div');
         el.className = 'marker';
         if(marker.flag === "yellow"){
             el.style.backgroundImage = 'url(yellowdot.png)';
-            el.addEventListener('click', function() {
-                var alertMess = "Date of trip: " + marker.date + "\nSupplies Used:" + marker.suppUsed + "\nSupplies Needed: " + marker.suppNeed + "\nLocation: " + marker.geometry.coordinates[1] +  ", " +  marker.geometry.coordinates[0] +"\nNext steps: " + marker.nextSteps + "\n";
-                window.alert(alertMess);
-            });
-        }else if(marker.flag === "red"){
+        } else if(marker.flag === "red"){
             el.style.backgroundImage = 'url(reddot.JPG)';
-            el.addEventListener('click', function() {
-                var alertMess = "Date of trip: " + marker.date + "\nSupplies Used:" + marker.suppUsed + "\nSupplies Needed: " + marker.suppNeed + "\nLocation: " + marker.geometry.coordinates[1] +  ", " +  marker.geometry.coordinates[0] +"\nNext steps: " + marker.nextSteps + "\n";
-                window.alert(alertMess);
-            });
         }
+
+        el.addEventListener('click', function() {
+           var alertMess = "Date of trip: " + marker.date + "\nSupplies Used:" + marker.suppUsed + "\nSupplies Needed: " + marker.suppNeed + "\nLocation: " + marker.geometry.coordinates[1] +  ", " +  marker.geometry.coordinates[0] +"\nNext steps: " + marker.nextSteps + "\n";
+            window.alert(alertMess);
+        });
+
         //else{
         //    el.style.backgroundImage = 'url(green.jpg)';
         //    el.addEvenListener('click', function() {
@@ -191,24 +245,72 @@ var map = new mapboxgl.Map({
         new mapboxgl.Marker(el)
             .setLngLat(marker.geometry.coordinates)
             .addTo(map);
-    });
-var layers = ['Urgent Need', 'Moderate Need', 'Need Fulfilled'];
-var colors = ['#FF0000', '#FFFF00', '#33CC33'];
-for(var i = 0; i < layers.length; i++){
-    var layer = layers[i];
-    var color = colors[i];
-    var item = document.createElement('div');
-    var key = document.createElement('span');
-    key.className = 'legend-key';
-    key.style.backgroundColor = color;
-    var value = document.createElement('span');
-    value.style.fontSize = 'large';
-    value.innerHTML = layer;
-    item.appendChild(key);
-    item.appendChild(value);
-    legend.appendChild(item);
+
+    }
+
+    function addLegend(){
+        var layers = ['Urgent Need', 'Moderate Need', 'Need Fulfilled'];
+        var colors = ['#FF0000', '#FFFF00', '#33CC33'];
+        for(var i = 0; i < layers.length; i++){
+            var layer = layers[i];
+            var color = colors[i];
+            var item = document.createElement('div');
+            var key = document.createElement('span');
+            key.className = 'legend-key';
+            key.style.backgroundColor = color;
+            var value = document.createElement('span');
+            value.style.fontSize = 'large';
+            value.innerHTML = layer;
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
+       }
+
+   }
+   
+   function newTrip() {
+        var trip = $('#addTrip').html();
+
+        $('#addTrip').html("");
+        alertify.confirm(trip).set('onok', function(closeevent, value)       {
+          var dateTrip = $('#date').val();
+          var suppUsed =$('#suppUsed').val();
+          var suppNeed = $('#suppNeed').val();
+          var lat =$('#lat').val();
+          var longit = $('#long').val();
+          var nextSteps = $('#next').val();
+
+          if(typeof(lat) == "number" && typeof(longit) == "number"){
+              alertify.success('Entered.');
+          } else {
+              alertify.error('Latitude and longitude not valid.');
+          }
+
+          var flag = parseInt(suppNeed.substring(0, suppNeed.indexOf(' '))) > 25 ? "red" : "yellow";
+          var marker = {
+          "type": "Feature",
+          "flag": flag,
+          "date": dateTrip,
+          "suppUsed": suppUsed,
+          "suppNeed": suppNeed, 
+          "nextSteps": nextSteps,
+          "location": lat + ", " + longit,
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  lat,
+                  longit
+              ]
+          }
+       }
+
+        addMarker(marker);
+
+        }).set('title', "Trip Details");
+        
 }
 </script>
+
 
 </body>
 </html>

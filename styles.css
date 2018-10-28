@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
     margin: 0;
     padding: 0;
     border: 0;
@@ -51,22 +51,6 @@ body {
     margin-right: 20px;
 }
 
-#footer {
-    background-color: rgba(0,0,0,0.65);
-    padding: 10px 10px;
-    position: relative;
-    width: 100%;
-    height: 35px;
-    z-index: 99;
-}
-
-#footer p {
-    color: white;
-    text-align: center;
-    position: center;
-    padding-top: 5px;
-}
-
 h1 {
     margin-right: auto;
     text-align: center;
@@ -93,14 +77,6 @@ h4 {
 p {
     color: black;
     font-size: 20px;
-    text-align: center;
-}
-
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
 }
 
 #mission-statement {
@@ -132,32 +108,17 @@ p {
     padding-top: 250px;
 }
 
-#stats {
-    display: block;
-    margin: auto;
-    background: white;
-    max-width: 100px;
-    margin: 0px;
-    padding: 0px;
-}
-
-#stats h5,h6 {
-    disply: inline-block;
-    margin: 0px;
-    padding: 0px;
-}
-
 #supply-buttons {
     display: block;
     max-width: 100%;
     display: block;
     margin: auto;
     background: white;
-    margin-bottom: 300px;
+    margin-bottom: 500px;
 }
 
-.sup-box {
-    opacity: 0.85;
+.box {
+    opacity: 0.80;
     display: inline-block;
     height: 250px;
     width: 250px;
@@ -188,11 +149,11 @@ p {
     background-size: 250px 250px;
 }
 
-.supply h2 {
+.box h2 {
+    visibility: hidden;
     text-align: center;
     font-weight: bold;
     color: black;
-    text-align: center;
 }
 
 button {
@@ -200,7 +161,7 @@ button {
 }
 
 button:hover{
-    opacity: 0.5;
+    opacity: 0.50;
     cursor: pointer;
 }
 
@@ -219,6 +180,65 @@ button:hover{
     background-color: darkred;
     cursor: pointer;
 }
+body{
+  background-image: url(background.jpg);
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+}
+
+button{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline:0;
+  background: #ccccff;
+  border: 6;
+  padding: 2px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.register-form-wrapper{
+  margin-top: 150px;
+  margin-left: 800px;
+}
+.image {
+  position: fixed;
+  height: 600px;
+  width: 500px;
+  background: url(background.jpg);
+  top:0px;
+  left:70px;
+}
+.image:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.8s;
+  opacity: 0;
+  background: url(hand3.jpg);
+  background-size: 100% 100%;
+}
+
+.signup{
+  float :left;
+  display:inline-block;
+}
+.login{
+  float:left;
+  display: inline-block;
+}
 
 #donate-paypal-button{
     font-size: 20px;
@@ -227,12 +247,12 @@ button:hover{
     border-radius: 5px;
     border: 0px;
     padding: 10px 30px 10px;
-    background-color: deepskyblue;
+    background-color: blue;
 }
 
 #donate-paypal-button:hover {
     opacity: 1.0;
-    background-color: steelblue;
+    background-color: darkblue;
     cursor: pointer;
 }
 

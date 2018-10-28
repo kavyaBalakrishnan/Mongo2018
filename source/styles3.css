@@ -1,0 +1,26 @@
+button {
+
+}
+
+button:hover{
+    opacity: 0.50;
+    cursor: pointer;
+}
+
+#donate-paypal-button{
+    font-size: 20px;
+    color: white;
+    margin: 30px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 10px 30px 10px;
+    background-color: deepskyblue;
+}
+
+#donate-paypal-button:hover {
+    opacity: 1.0;
+    background-color: steelblue;
+    cursor: pointer;
+}
+
+
