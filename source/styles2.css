@@ -1,0 +1,59 @@
+body{
+  background-image: url(background.jpg);
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+}
+
+button{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline:0;
+  background: #ccccff;
+  border: 6;
+  padding: 2px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.register-form-wrapper{
+  margin-top: 150px;
+  margin-left: 800px;
+}
+.image {
+  position: fixed;
+  height: 600px;
+  width: 500px;
+  background: url(background.jpg);
+  top:0px;
+  left:70px;
+}
+.image:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.8s;
+  opacity: 0;
+  background: url(hand3.jpg);
+  background-size: 100% 100%;
+}
+
+.signup{
+  float :left;
+  display:inline-block;
+}
+.login{
+  float:left;
+  display: inline-block;
+}
